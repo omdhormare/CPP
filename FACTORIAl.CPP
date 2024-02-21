@@ -1,17 +1,13 @@
- #include<iostream.h>
- #include<conio.h>
+#include<iostream>
+using namespace std;
  int main()
  {
-   int f=1,n;
-   clrscr();
+   long f=1,n,i;
    cout<<"\n Enter The Number : " ;
    cin>>n;
-   while(n>0)
+   for(i=1;i<=n;i++)
    {
-      f=f*n;
-      n--;
+      f=f*i;
    }
    cout<<"\n The Factorial : "<<f;
-   getch();
-   return 0;
  }
