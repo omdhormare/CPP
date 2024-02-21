@@ -1,30 +1,32 @@
- #include<iostream.h>
+/*Write a C++ program to accept radius of a Circle. Calculate and display
+ diameter, circumference as well as area of a Circle. (Use Inline function)*/
+
  #include<conio.h>
- inline cal_dia(float r)
+ #include<iostream>
+ using namespace std;
+ inline float cal_diameter(float r)
  {
     return 2*r;
  }
- inline cal_circumfurance(float r)
+ inline float circumeference(float r)
  {
-   return 2*3.14*r;
+    return 2*3.14*r;
  }
- inline cal_area(float r)
+ inline float area(float r)
  {
-   return 3.14*r*r;
+    return 3.14*r*r;
  }
  int main()
  {
     float r;
-    clrscr();
-    cout<<"Enter Circle Redius : ";
+    //clrscr();
+    cout<<"\n Enter Radius Of circle : ";
     cin>>r;
-    cout<<"\n Dimeter : "<<cal_dia(r);
-    cout<<"\n calculate circumfurance : "<<cal_circumfurance(r);
-    cout<<"\n Area : " <<cal_area(r);
-    getch();
-    return 0;
+    cout<<"Diameter : "<<cal_diameter(r)<<endl;
+    cout<<"Circumefrences of : "<<circumeference(r)<<endl;
+    cout<<"Area Of circle : "<<area(r)<<endl;
+    //getch();
  }
-
 
 
 
