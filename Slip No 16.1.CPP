@@ -1,57 +1,50 @@
-#include <stdio.h>
-#define MAX 75
-struct stack {
-    int top;
-    char a[MAX];
-} s1;
-
-void init() 
-{
-    s1.top = -1;
-}
-int isfull() 
-{
-    if (s1.top == MAX - 1)
-        return 1;
-    else
-        return 0;
-}
-
-void push(char s) 
-{
-    if (isfull())
-        printf("\n Stack is full ");
-    else {
-        s1.top++;
-        s1.a[s1.top] = s;
-    }
-}
-void dis()
-{
-    int i;
-    for (i = s1.top; i >= 0; i--) 
-	{
-        printf("%c", s1.a[i]);
-    }
-}
-int main()
+/* Write a C++ program to create a class Machine with data members MachineId,
+ Machine Name, Price.Create and initialize all values of Machine object by
+ using parameterized constructor and copy constructor.
+ Display details of Machine using setw() and setprecision( ). */
+ #include<conio.h>
+ #include<iostream.h>
+ #include<string.h>
+ #include<iomanip.h>
+ class machine
  {
-    int i;
-    char s[100];
-    init();
-    printf("\n Enter String : ");
-    gets(s); 
-    for (i = 0; s[i] != '\0'; i++) 
-	{
-        if (s[i] == ' ') 
-		{
-            dis();
-            printf(" ");
-            init(); 
-        } 
-		else 
-            push(s[i]);
+  int machine_id;
+  float mprice;
+  char name[30];
+  public:
+    machine(int mid,float price,char mname[])
+    {
+       machine_id=mid;
+       mprice=price;
+       strcpy(mname,mname);
+       cout<<"Enter Machine Id : ";
+       cin>>machine_id;
+       cout<<"Enter Machine Name : ";
+       cin>>name;
+       cout<<"Enter Machine price : ";
+       cin>>mprice;
     }
-    dis();
-}
-
+    machine(machine &m)
+    {
+       machine_id=m.machine_id;
+       mprice=m.mprice;
+       strcpy(name,m.name);
+    }
+    void dis()
+    {
+      cout<<"\nMachine Id : "<<setw(10)<<machine_id;
+      cout<<"\nMachine Name : "<<setw(10)<<name;
+      cout<<"\nMachine Price : "<<setfill(2)<<mprice;
+    }
+ };
+  void main()
+  {
+    int mid;
+    float price;
+    char mname[20];
+    clrscr();
+    machine ob(mid,price,mname);
+    machine ob1(ob);
+    ob.dis();
+    getch();
+  }
