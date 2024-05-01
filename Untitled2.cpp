@@ -1,57 +1,38 @@
-#include <iostream>
-#include <iomanip>
-#include <string>
-
+#include<iostream>
+#include<fstream>
+#include<ctype.h>
 using namespace std;
+class myfile
+{
+    public:
+        fstream f1,f2,f3;
+        char ch;
+         void accept()
+         {
+           f1.open("C:\\TurboC++\\Disk\\TurboC3\\Bin\\f1.txt", ios::in);
+           f1.open("C:\\TurboC++\\Disk\\TurboC3\\Bin\\f2.txt", ios::in);
+           f1.open("C:\\TurboC++\\Disk\\TurboC3\\Bin\\f3.txt", ios::out);
 
-// User-defined manipulator
-ostream& salaryFormat(ostream& os) {
-    os << setfill('*') << setw(7) << right;
-    return os;
-}
-
-class Employee {
-private:
-    int empId;
-    string empName;
-    string companyName;
-    float salary;
-
-public:
-    // Constructor to initialize data members
-    Employee() : empId(0), salary(0.0) {}
-
-    // Function to accept employee data
-    void accept() {
-        cout << "Enter Employee ID: ";
-        cin >> empId;
-        cin.ignore();  // Ignore newline after integer input
-        cout << "Enter Employee Name: ";
-        getline(cin, empName);
-        cout << "Enter Company Name: ";
-        getline(cin, companyName);
-        cout << "Enter Salary: ";
-        cin >> salary;
-    }
-
-    // Function to display employee data
-    void display() {
-        cout << "Employee ID: " << empId << endl;
-        cout << "Employee Name: " << empName << endl;
-        cout << "Company Name: " << companyName << endl;
-        cout << "Salary: " << salaryFormat << salary << endl;
-    }
+         }
+         void operator+()
+         {
+            while(f1.get(ch))
+            {
+             f3.put(ch);
+            }
+             while(f2.get(ch))
+            { 
+             f3.put(ch);
+            }
+            f1.close();
+            f2.close();
+            f3.close();
+         }
 };
-
-int main() {
-    Employee emp;
-
-    cout << "Enter employee details:\n";
-    emp.accept();
-
-    cout << "\nDisplaying Employee Details:\n";
-    emp.display();
-
-    return 0;
+int main()
+{
+    myfile ob;
+    ob.accept();
+    +ob;
 }
 

@@ -1,13 +1,20 @@
-#include<iostream>
+#include <iostream>
+#include <cstdlib> // for atoi
+
 using namespace std;
-int main()
-{
-	long i,n,sum=0;
-	cout<<"Enter No : ";
-	cin>>n;
-	for(i=1;i<=n;i++)
-	{
-		sum=sum+i;
-	}
-	cout<<"Sum : "<<sum; 
+
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
+        cout << "Usage: " << argv[0] << " <num1> <num2>" << endl;
+        return 1;
+    }
+    
+    int num1 = atoi(argv[1]);
+    int num2 = atoi(argv[2]);
+    
+    int sum = num1 + num2;
+    
+    cout << "Sum: " << sum << endl;
+
+    return 0;
 }
