@@ -1,5 +1,6 @@
- //#include<conio.h>
- //#include<iostream.h>
+
+ #include<iostream>
+ using namespace std;
  class person
  {
     public:
@@ -38,13 +39,13 @@
 	 cout<<"\nTotal Tax : "<<tax_amout;
       }
  };
- void main()
+int main()
  {
     person ob;
-    clrscr();
+   
     ob.accept();
     ob.dis();
     ob.cal_Tax();
-    getch();
+  
  }
 

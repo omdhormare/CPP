@@ -1,6 +1,7 @@
- #include<conio.h>
- #include<iostream.h>
+
+ #include<iostream>
  #include<string.h>
+ using namespace std;
  class city
  {
    public:
@@ -35,13 +36,13 @@
 	int i,pass,temp;
 	for(pass=0;pass<n;pass++)
 	{
-	  for(i=0;i<n-1-pass;i++)
+	  for(i=0;i<n-pass;i++)
 	  {
-	    if(ob[i+1].population < ob[i].population)
+	    if(ob[i].population > ob[i+1].population)
 	    {
-	      temp=ob[i+1].population;
-	      ob[i+1].population=ob[i].population;
-	      ob[i].population=temp;
+	      temp=ob[i].population;
+	      ob[i].population=ob[i+1].population;
+	      ob[i+1].population=temp;
 	    }
 	  }
 	}
@@ -50,12 +51,12 @@
 	{
 	  ob[i].dis();
 	}
-    }
- void main()
+}
+int main()
  {
    int i,n,ch;
    char s1[100];
-   clrscr();
+   city ob[100];
    do{
       cout<<endl<<"--------------------------------------------------"<<endl;
       cout<<"\n1. Enter Limit : ";
@@ -69,7 +70,6 @@
       {
 	 case 1:cout<<"Enter Limit : ";
 		cin>>n;
-		city *ob=new city[n];
 	       for(i=0;i<n;i++)
 		{
 		  ob[i].accept();
@@ -92,5 +92,4 @@
       }
 
      }while(ch<5);
-     getch();
  }
