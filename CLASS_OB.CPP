@@ -1,11 +1,11 @@
  #include<iostream.h>
  #include<conio.h>
- class addition
+ class add
  {
    public:
    int a,b,c;
- }
- void accept()
+
+  void accept()
  {
     cout<<"\n Enter 1 Number : ";
     cin>>a;
@@ -16,10 +16,11 @@
  void dis()
  {
     cout<<"\n Addition : "<<c;
- };
+ }
+};
  int main()
  {
-   addition.ob;
+   add ob;
    ob.accept();
    ob.dis();
    getch();

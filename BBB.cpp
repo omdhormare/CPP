@@ -1,0 +1,2 @@
+/* Create a C++ class MyArray, which contains single dimensional integer array of a given size. Write a
+member function to display sum of given array elements. (Use Dynamic Constructor and Destructor)*/
