@@ -14,7 +14,7 @@ int avg(float n1,float n2,float n3)
 }
 int main()
 {
-	int a,b,c;
+	int a,b,c;a
 	float n1,n2,n3;
 	cout<<"\n Enter Three Number integer : ";
 	cin>>a>>b>>c;

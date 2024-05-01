@@ -1,20 +1,15 @@
-#include <iostream>
-
-using namespace std;
-class Number{
-    public:
-        void display(){
-            static int cnt=1;
-            cout<<"\nDisplay function is called "<<cnt<<" times"<<endl;
-            cnt++;
-        }
-};
-int main()
-{
-    Number n1,n2;
-    n1.display();
-    n1.display();
-    n2.display();
-    n2.display();
-    return 0;
-}
+ #include<iostream>
+ using namespace std;
+ void stat()
+ {
+    int m=0;
+    static int n=0;
+    m++;
+    n++;
+    cout<<m<<" "<<n<<"\n";
+ }
+ int main()
+ {
+    stat();
+    stat();
+ }
