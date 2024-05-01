@@ -1,64 +1,58 @@
 #include<iostream>
 using namespace std;
 
-class Square {
-    public:
-        int s;
+class Rectangle; 
 
-        void getdata() {
-            cout << "Enter the side of the square: ";
-            cin >> s;
-        }
-
-        int calArea() {
-            return (s*s);
-        }
-
-        friend void compare(int s, int r);
-};
-
-class Rectangle {
-    public:
-        int l, w;
-
-        void getdata() {
-            cout << "Enter the length of the rectangle: ";
-            cin >> l;
-            cout << "Enter the width of the rectangle: ";
-            cin >> w;
-        }
-
-        int calArea() {
-            return (l*w);
-        }
-
-        friend void compare(int s, int r);
-};
-
-void compare(int s, int r) {
-    if(s > r) {
-        cout << "The area of square is bigger than area of rectangle." << endl;
-    } else {
-        cout << "The area of rectangle is bigger than area of square." << endl;
+class Square 
+{
+public:
+    int a;
+    void acceptS() 
+	{
+        cout << "\n Enter number for Square : ";
+        cin >> a;
     }
+    friend void compareArea(Square sq, Rectangle rec);
+};
+
+class Rectangle 
+{
+public:
+    int l, b;
+    void acceptR() 
+	{
+        cout << "\n Enter Length : ";
+        cin >> l;
+        cout << "\n Enter Breadth: ";
+        cin >> b;
+    }
+    friend void compareArea(Square sq, Rectangle rec);
+};
+
+void compareArea(Square sq, Rectangle rec) 
+{
+    int area_sq = sq.a * sq.a;
+    int area_rec = rec.l * rec.b;
+
+    cout << "\n Area of Square: " << area_sq;
+    cout << "\n Area of Rectangle: " << area_rec;
+
+    if (area_sq > area_rec)
+        cout << "\n Square has larger area than Rectangle.";
+    else if (area_sq < area_rec)
+        cout << "\n Rectangle has larger area than Square.";
+    else
+        cout << "\n Square and Rectangle have equal area.";
 }
 
+int main() 
+{
+    Square sq;
+    Rectangle rec;
 
-int main() {
-    int s_area, r_area;
-    Square s1;
-    Rectangle r1;
+    sq.acceptS();
+    rec.acceptR();
+    compareArea(sq, rec);
 
-    s1.getdata();
-    s_area = s1.calArea();
-
-    r1.getdata();
-    r_area = r1.calArea();
-
-    cout << "Square: " << s_area << endl;
-    cout << "Rectangle: " << r_area << endl;
-
-    compare(s_area, r_area);
-
-    return 0;
 }
+
