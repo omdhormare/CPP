@@ -1,103 +1,136 @@
 #include<iostream>
-#include<string.h>
-
 using namespace std;
 
-class Travels {
+class Employee {
 public:
-    int tno;
-    char cname[30];
-    void accept() {
-        cout << "\nEnter T_No :";
-        cin >> tno;
-        cout << "\nEnter Company Name : ";
-        cin >> cname;
+    int emp_code;
+    string name;
+    int salary;
+
+    void accept() 
+	{
+        cout << "\n \nEnter employee code and name: ";
+        cin >> emp_code >> name;
     }
 };
 
-class Route : public Travels {
+class Fulltime : public Employee 
+{
 public:
-    int rid;
-    char source[30];
-    char destination[20];
-    void acceptR() {
-        cout << "\nEnter Route Id :";
-        cin >> rid;
-        cout << "\nEnter Source : ";
-        cin >> source;
-        cout << "\nEnter Destination : ";
-        cin >> destination;
+    int daily_wages;
+    int num_of_days;
+
+    void accept_fulltime()
+	 {
+        cout << "\n Enter daily wages and number of days: ";
+        cin >> daily_wages >> num_of_days;
+    }
+
+    void calculate_salary()
+	 {
+        salary = daily_wages * num_of_days;
+    }
+
+    void display_fulltime() {
+        cout << "\nEmployee code: " << emp_code;
+        cout << "\nEmployee name: " << name;
+        cout << "\nDaily wages: " << daily_wages;
+        cout << "\nNumber of days: " << num_of_days;
+        cout << "\nSalary: " << salary;
     }
 };
 
-class Reservation : public Route {
+class Parttime : public Employee {
 public:
-    int no_of_seat;
-    int dd, mm, yyyy;
+    int num_of_hours;
+    int hourly_wages;
 
-    void acceptRE() {
-        cout << "\nEnter No Of Seat : ";
-        cin >> no_of_seat;
-        cout << "\nEnter Travels date(dd mm yyyy) :";
-        cin >> dd >> mm >> yyyy;
+    void accept_parttime() 
+	{
+        cout << "\n Enter number of hours and hourly wages: ";
+        cin >> num_of_hours >> hourly_wages;
     }
 
-    void dis() {
-        cout << "\nTravels No : " << tno;
-        cout << "\nCompany Name : " << cname;
-        cout << "\nRoute Id :" << rid;
-        cout << "\nDestination : " << destination;
-        cout << "\nNo Of Seats : " << no_of_seat;
-        cout << "\nTravel Date : " << dd << "/" << mm << "/" << yyyy;
+    void calculate_salary() 
+	{
+        salary = num_of_hours * hourly_wages;
     }
 
-    void date(int d, int m, int y) {
-        if (dd == d && mm == m && yyyy == y) {
-            cout << "\nTravels No : " << tno;
-            cout << "\nCompany Name : " << cname;
-            cout << "\nRoute Id :" << rid;
-            cout << "\nDestination : " << destination;
-            cout << "\nNo Of Seats : " << no_of_seat;
-        } else
-            cout << "\n Not Found";
+    void display_parttime() 
+	{
+        cout << "\nEmployee code: " << emp_code;
+        cout << "\nEmployee name: " << name;
+        cout << "\nNumber of hours: " << num_of_hours;
+        cout << "\nHourly wages: " << hourly_wages;
+        cout << "\nSalary:\n \n  " << salary;
     }
 };
 
-int main() {
-    int i, n, ch, d, m, y;
-    Reservation ob[100];
+int main() 
+{
+    Fulltime fulltimeEmployees[5];
+    Parttime parttimeEmployees[5];
+    int n, choice, max_salary, max_salary_index;
+
+    cout << "\nEnter the number of employees: ";
+    cin >> n;
+
     do {
-        cout << "\n\n1.Accept Details N Reservation ...";
-        cout << "\n\n2.Display All Reservation....";
-        cout << "\n\n3.Display Reservation Details Of Specific date ..\n";
-        cout << "--------------------------------------------";
-        cout << "\nEnter Choice : ";
-        cin >> ch;
-        switch (ch) {
+        cout << "\nEnter choice:\n1 Fulltime\n2 Parttime\n3 Display fulltime employee with maximum salary\n4 Display parttime employee with maximum salary\n\n";
+        cin >> choice;
+
+        switch(choice) 
+		{
             case 1:
-                cout << "\nEnter Limit : ";
-                cin >> n;
-                for (i = 0; i < n; i++) {
-                    cout << "\nEnter Details : ";
-                    ob[i].accept();
-                    ob[i].acceptR();
-                    ob[i].acceptRE();
+                for(int i = 0; i < n; i++) 
+				{
+                    fulltimeEmployees[i].accept();
+                    fulltimeEmployees[i].accept_fulltime();
+                    fulltimeEmployees[i].calculate_salary();
+                    fulltimeEmployees[i].display_fulltime();
                 }
                 break;
+
             case 2:
-                for (i = 0; i < n; i++)
-                    ob[i].dis();
+                for(int i = 0; i < n; i++) 
+				{
+                    parttimeEmployees[i].accept();
+                    parttimeEmployees[i].accept_parttime();
+                    parttimeEmployees[i].calculate_salary();
+                    parttimeEmployees[i].display_parttime();
+                }
                 break;
+
             case 3:
-                cout << "\n Enter Date (dd mm yyyy): ";
-                cin >> d >> m >> y;
-                for (i = 0; i < n; i++)
-                    ob[i].date(d, m, y);
+                max_salary = fulltimeEmployees[0].salary;
+                max_salary_index = 0;
+                for(int i = 1; i < n; i++) 
+				{
+                    if(fulltimeEmployees[i].salary > max_salary) 
+					{
+                        max_salary = fulltimeEmployees[i].salary;
+                        max_salary_index = i;
+                    }
+                }
+                fulltimeEmployees[max_salary_index].display_fulltime();
                 break;
+
+            case 4:
+                max_salary = parttimeEmployees[0].salary;
+                max_salary_index = 0;
+                for(int i = 1; i < n; i++) 
+				{
+                    if(parttimeEmployees[i].salary > max_salary) 
+					{
+                        max_salary = parttimeEmployees[i].salary;
+                        max_salary_index = i;
+                    }
+                }
+                parttimeEmployees[max_salary_index].display_parttime();
+                break;
+
         }
-    } while (ch < 4);
+    } while(choice != 5);
 
-    return 0;
 }
-
 
